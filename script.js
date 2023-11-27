@@ -3,7 +3,7 @@
 const mario = document.querySelector('.mario');
 const cano = document.querySelector('.cano');
 const nuvem = document.querySelector('.nuvem');
-const fimDeJogo = document.querySelector('.fim-de-joog');
+const fimDeJogo = document.querySelector('.fim-de-jogo');
 const botaoReiniciar = document.querySelector('.reiniciar');
 
 let pontuacao = 0;
@@ -17,11 +17,12 @@ function fazerMarioPular() {
         pontuacao++;
 
         atualizarPontuacao();
-    },500);
+    }, 500);
 }
 
 function atualizarPontuacao() {
-    console.log('Pontuação: ' + pontuacao);
+    const pontuacaoElemento = document.querySelector('.pontuacao');
+    pontuacaoElemento.textContent = `PONTUAÇÃO: ${pontuacao} PULINHOS`;
 }
 
 function verificarColisoes() {
@@ -29,7 +30,7 @@ function verificarColisoes() {
     const posicaoMario = parseFloat(getComputedStyle(mario).bottom);
     const posicaoNuvem = parseFloat(getComputedStyle(nuvem).bottom);
 
-    if(posicaoCano <- 100 && posicaoCano > 0 && posicaoMario < 60) {
+    if (posicaoCano <= 100 && posicaoCano > 0 && posicaoMario < 60) {
         console.log("Você morreu, sua pontuação foi de: ", pontuacao);
         pontuacao = 0;
         pararJogo();
@@ -43,16 +44,32 @@ function verificarColisoes() {
         mario.style.width = '70px';
         mario.style.marginLeft = '35px';
 
-        nuvem.style.animation = 'nuvem 20s infinite linear';
+        nuvem.style.animation = 'none';
         nuvem.style.left = `${posicaoNuvem}px`;
 
         fimDeJogo.style.visibility = 'visible';
-    }
+        botaoReiniciar.style.visibility = 'visible';
 
-
-    let loopJogo = setInterval(verificarColisoes, 10);
-    function pararJogo() {
-        clearInterval(loopJogo);
-        console.log("Jogo Parado");
+    } else if (posicaoCano < -100 && posicaoCano > -110) {
+        pontuacao++;
+        atualizarPontuacao();
     }
+}
+
+let loopJogo = setInterval(verificarColisoes, 10);
+
+function pararJogo() {
+    clearInterval(loopJogo);
+    console.log("Jogo Parado");
+}
+
+botaoReiniciar.addEventListener('click', reiniciarJogo);
+
+function reiniciarJogo() {
+     // Remover o ouvinte de eventos para evitar múltiplos ouvintes
+     botaoReiniciar.removeEventListener('click', reiniciarJogo);
+  
+ 
+     // Recarregar a página
+     location.reload()
 }

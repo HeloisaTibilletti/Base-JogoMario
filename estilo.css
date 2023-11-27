@@ -56,7 +56,10 @@
   left: 0;
   justify-content: center;
   align-items: center;
-  background-color: rgba(65, 57, 57, 0.363);
+  background-color: rgba(15, 13, 13, 0.863);
+  flex-direction: column;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  gap: 50px;
 }
 
 /* Estilos do botão de reiniciar */
@@ -66,8 +69,19 @@
   border-radius: 10px;
   border: none;
   font-size: 20px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 0, 0);
   cursor: pointer;
+  font-weight: 700;
+}
+
+p {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 1%;
+}
+
+.msg {
+  font-size: 50px;
+  color: aliceblue;
 }
 
 /* Animação para o movimento do cano */
